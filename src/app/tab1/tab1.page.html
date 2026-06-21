@@ -1,17 +1,45 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title style="font-weight: 600;">Campanhas da Cyrrus</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div style="padding-left: 4px; margin-bottom: 16px;">
+    <h2 style="color: #473C33; font-weight: 700; margin-bottom: 4px; font-size: 22px;">Campanhas Ativas</h2>
+    <p style="color: #7A6F66; margin-top: 0; font-size: 14px;">Fique por dentro das coberturas vacinais vigentes para o público infantil.</p>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div *ngIf="campaigns.length > 0; else noCampaigns">
+    <ion-card *ngFor="let campaign of campaigns" style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #ffffff;">
+      <ion-card-header style="padding: 16px 16px 8px 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <ion-card-title style="font-size: 18px; font-weight: 700; color: #473C33;">
+            {{ campaign.title }}
+          </ion-card-title>
+          <ion-badge color="warning" style="padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 11px;">
+            Ativa
+          </ion-badge>
+        </div>
+        <ion-card-subtitle style="font-size: 13px; margin-top: 6px; color: #7A6F66; font-weight: 600;">
+          Público: {{ campaign.targetAudience }}
+        </ion-card-subtitle>
+        <ion-card-subtitle style="font-size: 12px; color: #FDA769; font-weight: 500; margin-top: 2px;">
+          Término em: {{ campaign.endDate | date:'dd/MM/yyyy' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content style="font-size: 14px; color: #5C534C; padding: 0 16px 16px 16px; line-height: 1.4;">
+        {{ campaign.description }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #noCampaigns>
+    <div class="ion-text-center ion-padding" style="color: #7A6F66; margin-top: 40px;">
+      <p style="font-size: 16px; font-weight: 500;">Nenhuma campanha de vacinação ativa no momento.</p>
+    </div>
+  </ng-template>
+
 </ion-content>
