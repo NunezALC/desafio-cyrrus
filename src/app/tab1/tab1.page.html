@@ -1,12 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title style="font-weight: 600;">Campanhas da Cyrrus</ion-title>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar style="--background: #473C33; --color: #ffffff;">
+    <ion-title style="font-weight: 600; font-size: 18px;">Campanhas da Cyrrus</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding" style="--background: #FAFAFA;">
   
-  <div style="padding-left: 4px; margin-bottom: 16px;">
+  <div style="padding-left: 4px; margin-bottom: 16px; margin-top: 8px;">
     <h2 style="color: #473C33; font-weight: 700; margin-bottom: 4px; font-size: 22px;">Campanhas Ativas</h2>
     <p style="color: #7A6F66; margin-top: 0; font-size: 14px;">Fique por dentro das coberturas vacinais vigentes para o público infantil.</p>
   </div>
@@ -18,14 +18,14 @@
           <ion-card-title style="font-size: 18px; font-weight: 700; color: #473C33;">
             {{ campaign.title }}
           </ion-card-title>
-          <ion-badge color="warning" style="padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 11px;">
+          <ion-badge style="background-color: #FEC868; color: #473C33; padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 11px;">
             Ativa
           </ion-badge>
         </div>
         <ion-card-subtitle style="font-size: 13px; margin-top: 6px; color: #7A6F66; font-weight: 600;">
           Público: {{ campaign.targetAudience }}
         </ion-card-subtitle>
-        <ion-card-subtitle style="font-size: 12px; color: #FDA769; font-weight: 500; margin-top: 2px;">
+        <ion-card-subtitle style="font-size: 12px; color: #FDA769; font-weight: 600; margin-top: 2px;">
           Término em: {{ campaign.endDate | date:'dd/MM/yyyy' }}
         </ion-card-subtitle>
       </ion-card-header>

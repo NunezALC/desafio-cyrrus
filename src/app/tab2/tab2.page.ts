@@ -42,15 +42,21 @@ export class Tab2Page implements OnInit {
 
   onChildChange(event: any) {
     const childId = event.detail.value;
+    // CORRIGIDO: Atribuindo o dependente encontrado de volta à variável da tela
     this.selectedChild = this.children.find(c => c.id === childId) || null;
   }
 
-  getStatusColor(status: string): string {
-    switch (status) {
-      case 'REALIZADA': return 'success';
-      case 'PENDENTE': return 'warning';
-      case 'ATRASADA': return 'danger';
-      default: return 'medium';
+  // Atualizado para retornar as cores hexadecimais oficiais da Cyrrus
+  getCustomStatusColor(status: string): string {
+    switch (status?.toUpperCase()) {
+      case 'REALIZADA':
+        return '#ABC270'; // Verde Oliva oficial
+      case 'ATRASADA':
+        return '#FDA769'; // Laranja oficial
+      case 'PENDENTE':
+        return '#FEC868'; // Amarelo oficial
+      default:
+        return '#7A6F66'; // Cinza/Marrom auxiliar para imprevistos
     }
   }
 }

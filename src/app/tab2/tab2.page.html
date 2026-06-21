@@ -1,13 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title style="font-weight: 600;">Caderneta de Vacinação</ion-title>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar style="--background: #473C33; --color: #ffffff;">
+    <ion-title style="font-weight: 600; font-size: 18px;">Caderneta de Vacinação</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding" style="--background: #FAFAFA;">
   
-  <ion-item class="ion-margin-bottom" lines="none" style="border: 1px solid #E0E0E0; border-radius: 12px; --background: #ffffff;">
-    <ion-select label="Selecionar Dependente:" label-placement="floating" [value]="selectedChild?.id" (ionChange)="onChildChange($event)" style="color: #473C33; font-weight: 500;">
+  <ion-item class="ion-margin-bottom" lines="none" style="border: 1px solid #E0E0E0; border-radius: 12px; --background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+    <ion-select label="Selecionar Dependente:" label-placement="floating" [value]="selectedChild?.id" (ionChange)="onChildChange($event)" style="color: #473C33; font-weight: 600;">
       <ion-select-option *ngFor="let child of children" [value]="child.id">
         {{ child.name }}
       </ion-select-option>
@@ -15,7 +15,7 @@
   </ion-item>
 
   <div *ngIf="selectedChild">
-    <div class="ion-margin-bottom" style="padding-left: 4px;">
+    <div class="ion-margin-bottom" style="padding-left: 4px; margin-top: 8px;">
       <h2 style="color: #473C33; font-weight: 700; margin-bottom: 4px; font-size: 22px;">
         Histórico de {{ selectedChild.name }}
       </h2>
@@ -24,7 +24,7 @@
       </p>
     </div>
 
-    <ion-list lines="none" style="background: transparent;">
+    <ion-list lines="none" style="background: transparent; padding: 0;">
       <ion-card *ngFor="let vaccine of selectedChild.vaccines" style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #ffffff;">
         <ion-card-header style="padding: 16px 16px 8px 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -32,7 +32,9 @@
               {{ vaccine.name }}
             </ion-card-title>
             
-            <ion-badge [color]="getStatusColor(vaccine.status)" style="padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 11px;">
+            <ion-badge [style.background-color]="getCustomStatusColor(vaccine.status)" 
+                       [style.color]="vaccine.status === 'REALIZADA' || vaccine.status === 'ATRASADA' ? '#ffffff' : '#473C33'"
+                       style="padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 11px;">
               {{ vaccine.status }}
             </ion-badge>
           </div>
